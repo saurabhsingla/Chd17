@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  suggestion: MyText
+  checkedFlag: false
+
+two:
+  suggestion: MyText
+  checkedFlag: false
