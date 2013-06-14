@@ -2,28 +2,72 @@
 <html>
 <head>
   <title>Chd17</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    .span3{
+    border:1px solid black;
+    }
+    </style>
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Project name</a>
+          <div class="nav-collapse collapse">
+            
+            <% if user_signed_in? %>
+             <p class="navbar-text pull-right">
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            </p>
+            <p class="navbar-text pull-right">
+            &nbsp; &nbsp;&nbsp;&nbsp;
+            </p>
+            <p class="navbar-text pull-right">
+              Subscribed as <%= link_to current_user.email, edit_user_registration_path %>
+            </p>
+              <% else %>
+            <p class="navbar-text pull-right">
+            <%= link_to "Subscribe", new_user_registration_path %> or 
+            <%= link_to "Sign in", new_user_session_path %>    
+            </p>
+            <% end %>
+
+
+            <ul class="nav">
+              <li class="active"><%= link_to "Home", root_path %></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
 <!-- 	<p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p> -->
-
-       <div id = "user_nav">
-
-       	<% if user_signed_in? %>
-       	Signed in as <%= current_user.email %>, Not you?
-       	<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-       	<% else %>
-
-		<%= link_to "Sign up", new_user_registration_path %> or 
-		<%= link_to "Sign in", new_user_session_path %>    
-		
-		<% end %>
-		</div>    	 
+       <p class="alert"><%= alert %></p> -->    	 
 
 		<% flash.each do |name, msg| %>
 			<%= content_tag :div, msg, :id => "flash_#{name}" %>

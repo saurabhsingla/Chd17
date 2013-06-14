@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611095931) do
+ActiveRecord::Schema.define(:version => 20130614100513) do
 
   create_table "address_table_info_asses", :force => true do |t|
     t.integer  "TableInfo_id"
@@ -78,5 +78,6 @@ ActiveRecord::Schema.define(:version => 20130611095931) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
